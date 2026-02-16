@@ -28,7 +28,7 @@ class Config:
     START_WORD = os.getenv("START_WORD", "stone")
     WORDLIST_FILE = os.getenv("WORDLIST_FILE", "data/commonWords.json")
     GUESS_DELAY = float(os.getenv("GUESS_DELAY", 1.9))
-    AUTO_LOOP = os.getenv("AUTO_LOOP", "True") == "True"
+    AUTO_LOOP = os.getenv("AUTO_LOOP", "True").lower() == "true"
 
     @staticmethod
     def validate():
