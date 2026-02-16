@@ -1,4 +1,3 @@
-import asyncio
 from telegram.ext import (
     Application,
     CommandHandler,
@@ -10,8 +9,8 @@ from bot.handlers import Handlers, HOSTING
 from config import Config
 
 
-async def main():
-    # Validate config first
+def main():
+    # Validate config
     Config.validate()
 
     handlers = Handlers()
@@ -39,7 +38,7 @@ async def main():
 
     app.add_handler(conv_handler)
 
-    # Game controls (.start / .off)
+    # Game controls
     app.add_handler(
         MessageHandler(
             filters.Regex(r"\.(start|off)"),
@@ -48,8 +47,10 @@ async def main():
     )
 
     print("Wordle Solver Bot running...")
-    await app.run_polling()
+
+    # IMPORTANT: No asyncio.run()
+    app.run_polling()
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
